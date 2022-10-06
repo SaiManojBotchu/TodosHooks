@@ -3,24 +3,27 @@ import { Paper, List, Divider } from '@mui/material';
 import TodoItem from './TodoItem';
 
 const TodoList = ({ todos, toggleTodo, updateTodo, deleteTodo }) => {
-  return (
-    <Paper>
-      <List>
-        {todos.map((todo, index) => (
-          <div key={todo.id}>
-            <TodoItem
+  if (todos.length) {
+    return (
+      <Paper>
+        <List>
+          {todos.map((todo, index) => (
+            <div key={todo.id}>
+              <TodoItem
               // key={todo.id}
-              {...todo}
-              toggleTodo={toggleTodo}
-              updateTodo={updateTodo}
-              deleteTodo={deleteTodo}
+                {...todo}
+                toggleTodo={toggleTodo}
+                updateTodo={updateTodo}
+                deleteTodo={deleteTodo}
               />
-            {index < todos.length - 1 && <Divider /> }
-          </div>
-        ))}
-      </List>
-    </Paper>
-  );
+              {index < todos.length - 1 && <Divider /> }
+            </div>
+          ))}
+        </List>
+      </Paper>
+    );
+  }
+  return null;
 };
 
 export default TodoList;

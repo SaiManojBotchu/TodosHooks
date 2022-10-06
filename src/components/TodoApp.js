@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paper, AppBar, Toolbar, Typography, Grid } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 
 const TodoApp = () => {
-  const initialTodos = [
-    { id: uuid(), task: 'feed the cat', completed: false },
-    { id: uuid(), task: 'complete movie', completed: true },
-    { id: uuid(), task: 'hello', completed: true }
-  ];
+  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
   const [todos, setTodos] = useState(initialTodos);
+
+  useEffect(() => {
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
   const paperStyle = {
     padding: 0,
     margin: 0,
@@ -49,7 +50,7 @@ const TodoApp = () => {
         </Toolbar>
       </AppBar>
       <Grid container justifyContent='center' style={{ marginTop: '1rem' }}>
-        <Grid item xs={11} md={8} lg={4}>
+        <Grid item xs={11} md={6} lg={4}>
           <TodoForm addTodo={addTodo} />
           <TodoList
             todos={todos}

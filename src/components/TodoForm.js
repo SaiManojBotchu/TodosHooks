@@ -20,6 +20,7 @@ const TodoForm = ({ addTodo }) => {
           margin='normal'
           label='Add New Todo'
           color='secondary'
+          autoComplete='off'
           fullWidth
         />
       </form>

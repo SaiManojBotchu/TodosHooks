@@ -20,7 +20,7 @@ const TodoItem = (props) => {
   const handleDeleteTodo = () => deleteTodo(id);
 
   return (
-    <ListItem style={{ height: '64px' }}>
+    <ListItem>
       {isEditing ? (
         <>
           <EditForm
@@ -46,7 +46,8 @@ const TodoItem = (props) => {
           <ListItemText
             style={{
               textDecoration: completed ? 'line-through' : 'none',
-              opacity: completed && 0.6
+              opacity: completed && 0.6,
+              paddingRight: '5rem',
             }}>
             {task}
           </ListItemText>

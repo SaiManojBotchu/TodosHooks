@@ -19,6 +19,7 @@ const EditForm = ({ id, task, updateTodo, toggle }) => {
         onChange={handleChange}
         margin='normal'
         color='secondary'
+        autoComplete='off'
         fullWidth
         autoFocus
         />
