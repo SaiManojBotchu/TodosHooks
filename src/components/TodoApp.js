@@ -33,6 +33,7 @@ const TodoApp = () => {
     const newTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, task: newText } : todo
     );
+    setTodos(newTodos);
   };
 
   const deleteTodo = (id) => {
