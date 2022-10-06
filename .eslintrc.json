@@ -23,6 +23,9 @@
     "no-restricted-syntax": 0,
     "operator-linebreak": 0,
     "arrow-body-style": 0,
+    "no-confusing-arrow": 0,
+    "implicit-arrow-linebreak": 0,
+    "function-paren-newline": 0,
     "import/no-extraneous-dependencies": 0,
 
     "jsx-a11y/label-has-associated-control": 0,
@@ -43,7 +46,8 @@
     "react/no-array-index-key": 1,
     "react/static-property-placement": 0,
     "react/jsx-one-expression-per-line": 0,
-    "react/function-component-definition": 0
+    "react/function-component-definition": 0,
+    "react/jsx-props-no-spreading": 0
   }
 }
 

@@ -1,17 +1,22 @@
 import React from 'react';
-import { Paper, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Paper, List, Divider } from '@mui/material';
+import TodoItem from './TodoItem';
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, toggleTodo, updateTodo, deleteTodo }) => {
   return (
     <Paper>
       <List>
-        {todos.map((todo) => (
-          <>
-            <ListItem>
-              <ListItemText>{todo.task}</ListItemText>
-            </ListItem>
-            <Divider />
-          </>
+        {todos.map((todo, index) => (
+          <div key={todo.id}>
+            <TodoItem
+              // key={todo.id}
+              {...todo}
+              toggleTodo={toggleTodo}
+              updateTodo={updateTodo}
+              deleteTodo={deleteTodo}
+              />
+            {index < todos.length - 1 && <Divider /> }
+          </div>
         ))}
       </List>
     </Paper>

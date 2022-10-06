@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Paper, AppBar, Toolbar, Typography } from '@mui/material';
+import { Paper, AppBar, Toolbar, Typography, Grid } from '@mui/material';
+import { v4 as uuid } from 'uuid';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 
 const TodoApp = () => {
   const initialTodos = [
-    { id: 1, task: 'feed the cat', completed: false },
-    { id: 2, task: 'complete movie', completed: true },
-    { id: 3, task: 'hello', completed: true },
+    { id: uuid(), task: 'feed the cat', completed: false },
+    { id: uuid(), task: 'complete movie', completed: true },
+    { id: uuid(), task: 'hello', completed: true }
   ];
   const [todos, setTodos] = useState(initialTodos);
   const paperStyle = {
@@ -18,7 +19,25 @@ const TodoApp = () => {
   };
 
   const addTodo = (newText) => {
-    setTodos(st => [...st, { id: 4, completed: false, task: newText }]);
+    setTodos((st) => [...st, { id: uuid(), completed: false, task: newText }]);
+  };
+
+  const toggleTodo = (id) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(newTodos);
+  };
+
+  const updateTodo = (id, newText) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, task: newText } : todo
+    );
+  };
+
+  const deleteTodo = (id) => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
   };
 
   return (
@@ -28,8 +47,17 @@ const TodoApp = () => {
           <Typography>Todos with Hooks</Typography>
         </Toolbar>
       </AppBar>
-      <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} />
+      <Grid container justifyContent='center' style={{ marginTop: '1rem' }}>
+        <Grid item xs={11} md={8} lg={4}>
+          <TodoForm addTodo={addTodo} />
+          <TodoList
+            todos={todos}
+            toggleTodo={toggleTodo}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+          />
+        </Grid>
+      </Grid>
     </Paper>
   );
 };
